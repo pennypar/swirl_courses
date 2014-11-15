@@ -85,10 +85,10 @@ sat %>%
 	
 sat %>%
   select(-contains("total")) %>%
-  gather(column, count, -score_range) %>%
-  separate(column, c("part", "sex")) %>%
-  group_by(part, sex) %>%
+  gather(part_sex, count, -score_range) %>%
+  separate(part_sex, c("part", "sex")) %>%
+  ### <Your call to group_by()> %>%
+  group_by(part,sex) %>%
   mutate(total = sum(count),
          prop = count / total
-  )
-
+  ) %>% print
